@@ -1,2 +1,3 @@
 # advent-of-code-2022
-Advent of Code 2022 coding challenge
+
+This repo contains my attempt at resolving the Advent of code 2022 coding challenges. 
