@@ -25,6 +25,10 @@ class index {
 	async initialise( fileName ) {
 		this.caloriesArray = await asyncReadFile( fileName );
 
+		if ( this.caloriesArray.length < 1 ) {
+			return;
+		}
+
 		this.loopCaloriesData();
 		this.highestCalories = this.addAllData();
 		this.outputResult(); 
@@ -53,10 +57,6 @@ class index {
 
 	loopCaloriesData() {
 
-		if ( this.caloriesArray.length < 1 ) {
-			return;
-		}
-
 		let currentElf = 0,
 			calorieIndex = [],
 			topScores = [];
@@ -72,11 +72,6 @@ class index {
 					score: calorieIndex[currentElf],
 				});
 
-				// Sort array high to low.
-				topScores.sort((a, b) => {
-					return b.score - a.score;
-				});
-
 				// Select next elf.
 				currentElf++;
 				continue;
@@ -88,6 +83,11 @@ class index {
 				calorieIndex[currentElf] = calorieIndex[currentElf] + parseInt( item );
 			}
 		}
+
+		// Sort array high to low.
+		topScores.sort((a, b) => {
+			return b.score - a.score;
+		});
 
 		this.topScores = topScores;
 	}

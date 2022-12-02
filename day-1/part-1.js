@@ -36,10 +36,10 @@ class index {
 			return;
 		}
 
-		let currentElf = 0;
-		let calorieIndex = [];
-		let highestCalories = 0;
-		let highestElf = 0;
+		let currentElf = 0,
+			calorieIndex = [],
+			highestCalories = 0,
+			highestElf = 0;
 
 		for (let index = 0; index < this.caloriesArray.length; index++) {
 			const item = this.caloriesArray[index];
