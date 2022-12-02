@@ -1,4 +1,4 @@
-import {promises as fsPromises} from 'fs';
+import {asyncReadFile} from '../_lib/helpers.js';
 
 /**
  * Init js class.
@@ -8,13 +8,19 @@ class index {
 	/**
 	 * Class setu-up.
 	 */
-	constructor() {
+	constructor( fileName ) {
 		this.highestCalories = 0;
 		this.elfWithHighestCalories = 0;
+
+		if ( '' === fileName ) {
+			return;
+		}
+
+		this.initialise( fileName );
 	}
 
-	async init( fileName ) {
-		this.caloriesArray = await this.asyncReadFile( fileName );
+	async initialise( fileName ) {
+		this.caloriesArray = await asyncReadFile( fileName );
 
 		this.loopCaloriesData();
 		this.outputResult();
@@ -59,22 +65,7 @@ class index {
 		this.highestCalories = highestCalories;
 		this.elfWithHighestCalories = highestElf;
 	}
-
-	/**
-	 * Read the file & return an array.
-	 * @param {*} filename 
-	 * @returns {array} 
-	 */
-	async asyncReadFile(filename) {
-		try {
-			const contents = await fsPromises.readFile(filename, 'utf-8');
-			const arr = contents.split(/\r?\n/);
-			return arr;
-		} catch (err) {
-			console.log(err);
-		}
-	}
 }
 
 // Create a version of the class.
-new index().init( 'test.txt' );
+new index( 'test.txt' );
