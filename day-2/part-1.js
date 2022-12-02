@@ -72,7 +72,7 @@ class index {
 		for (let index = 0; index < this.dataArray.length; index++) {
 			const match = this.dataArray[index];
 			
-			myScore = myScore +this.winDrawLossScores[ match[0] ][ match[1] ] + this.letters[ match[1] ];
+			myScore = myScore + this.winDrawLossScores[ match[0] ][ match[1] ] + this.letters[ match[1] ];
 		}
 
 		this.myFinalScore = myScore;
