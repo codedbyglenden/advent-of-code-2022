@@ -10,23 +10,13 @@ class index {
 	 */
 	constructor() {
 
-		// Winning sequences.
-			// Rock beats Scissors (a beats z)
-			// Paper beats Rock (b beats x)
-			// Scissors beats paper (c beats y)
+		// List all the win conditions.
 
-		// Draw both are the same
-			// A and X
-			// B and Y
-			// C and Z
-		
-		// Loss
-			// Scissors vs rock (c and x)
-			// Rock vs paper (y and b)
-			// Paper vs Scissors (z and c)
+		// List all the draw conditions.
 
-		this.myFinalScore = 0;
-		this.dataArray = [];
+		// List all the lose conditions.
+
+		// Foreach letter.
 
 		this.letters = {
 			A: 1, // Rock
@@ -37,6 +27,28 @@ class index {
 			Y: 2, // Paper
 			Z: 3, // scissors
 		};
+
+		// Win give you 6, draw gives you 3.
+		this.winDrawLossScores = {
+			A : {
+				Y: 6,
+				X: 3,
+				Z: 0,
+			},
+			B : {
+				Z: 6,
+				Y: 3,
+				X: 0,
+			},
+			C : {
+				X: 6,
+				Z: 3,
+				Y: 0
+			},
+		};
+
+		this.myFinalScore = 0;
+		this.dataArray = [];
 
 		this.initialise();
 	}
@@ -54,50 +66,16 @@ class index {
 	
 	loopData() {
 
+	
 		let myScore = 0;
 
 		for (let index = 0; index < this.dataArray.length; index++) {
 			const match = this.dataArray[index];
 			
-			// Take user hands & return our score.
-			myScore = myScore + this.determinWin( match[0], match[1] );
+			myScore = myScore +this.winDrawLossScores[ match[0] ][ match[1] ] + this.letters[ match[1] ];
 		}
 
 		this.myFinalScore = myScore;
-	}
-
-	getOutcome( playerOneHand, playerTwoHand ) {
-
-		if ( this.letters[playerOneHand] === this.letters[playerTwoHand] ) {
-			return 3;
-		}
-
-		if (
-			(
-				'A' !== playerOneHand && this.letters[playerOneHand] > this.letters[playerTwoHand] &&
-				'X' !== playerTwoHand
-			) ||
-			'A' === playerOneHand && this.letters[playerTwoHand] > 2 
-		) {
-			return 0;
-		}
-
-		return 6;
-	}
-
-	determinWin( playerOneHand, playerTwoHand ) {
-
-		playerOneHand = playerOneHand.toUpperCase();
-		playerTwoHand = playerTwoHand.toUpperCase();
-
-		// is it a win, loss, or draw.
-		let score = this.getOutcome( playerOneHand, playerTwoHand );
-
-		// Add the letter score to the result.
-		score = score + this.letters[playerTwoHand];
-
-		// Return.
-		return score;
 	}
 
 	async readFilesAndCreateArray() {
