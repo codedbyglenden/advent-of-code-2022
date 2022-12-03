@@ -65,7 +65,6 @@ class index {
 	}
 	
 	loopData() {
-
 	
 		let myScore = 0;
 
