@@ -72,10 +72,6 @@ class index {
 		this.answer = atIndex;
 	}
 
-	uniq(a) {
-		return Array.from(new Set(a));
-	}
-
 	outputMyScore() {
 		console.log( `The answer is: ${this.answer}` );
 	}

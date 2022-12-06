@@ -35,9 +35,6 @@ class index {
 		// this.dataArray
 		for (let index = 0; index < this.dataArray.length; index++) {
 			const letter = this.dataArray[index];
-			
-			// 4, 8, 12, 16
-			// r, r, w, c
 
 			if ( index > 3 ) {
 
@@ -60,10 +57,6 @@ class index {
 		}
 
 		this.answer = atIndex;
-	}
-
-	uniq(a) {
-		return Array.from(new Set(a));
 	}
 
 	outputMyScore() {
